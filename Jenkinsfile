@@ -15,16 +15,15 @@ pipeline {
             }
            post {
         success {
-            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true
+            
+                    mail to: "dilushikasavindi12@gmail.com",
+                        subject: "Build status success",
+                      body: "Build was success"
         }
         failure {
-            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true
+                       mail to: "dilushikasavindi12@gmail.com",
+                        subject: "Build status success",
+                      body: "Build was failure"
         }
         }
         }
@@ -40,16 +39,14 @@ pipeline {
             }
             post {
         success {
-            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true
+                        mail to: "dilushikasavindi12@gmail.com",
+                        subject: "Build status success",
+                        body: "Build was success"
         }
         failure {
-            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true
+                        mail to: "dilushikasavindi12@gmail.com",
+                        subject: "Build status success",
+                        body: "Build was failure"
         }
         }
         }
