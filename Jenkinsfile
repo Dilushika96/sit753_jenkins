@@ -6,12 +6,15 @@ pipeline {
             steps {
                 
                 echo "Build was successful"
+                echo "Maven Tool Used"
+                
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 
                 echo "Unit and Integration Tests passed"
+                echo "Junit Tool Used"
             }
            post {
         success {
@@ -32,11 +35,13 @@ pipeline {
             steps {
                
                 echo "Code Analysis completed"
+                 echo "Junit Tool Used"
             }
         }
         stage('Security Scan') {
             steps {
                 echo "Security Scan completed"
+                 echo "Jmeter Tool Used"
             }
             post {
         success {
@@ -61,6 +66,7 @@ pipeline {
         stage('Integration Tests on Staging') {
             steps { 
                 echo "Integration Tests on Staging passed"
+                echo "Jmeter Tool Used"
             }
         }
         stage('Deploy to Production') {
