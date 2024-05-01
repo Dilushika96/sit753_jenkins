@@ -14,7 +14,7 @@ pipeline {
         success {
             
                     mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Build statu Email"
+                    subject: "Build status Email"
                     build: "Build was success"
         }
         failure {
@@ -57,5 +57,6 @@ pipeline {
                  sh 'ansible-playbook deploy-production.yml'
                   }
              } 
-        }
+         }
+    }
 }
