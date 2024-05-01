@@ -1,53 +1,64 @@
 pipeline {
     agent any
     
-
-    
     stages {
         stage('Build') {
             steps {
-                echo "Build "
-               
-                
+                sh 'mvn clean package' 
             }
         }
-        stage('Test') {
+        stage('Unit and Integration Tests') {
             steps {
-                echo "Running unit tests"
-                
+                sh 'mvn test' 
+              post {
+        success {
+            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
+                      to: 'your_email@example.com',
+                      attachLog: true
+        }
+        failure {
+            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
+                      to: 'your_email@example.com',
+                      attachLog: true 
             }
         }
-        stage('Code Quality Check') {
+        stage('Code Analysis') {
             steps {
-                echo "Checking the quality of the code"
+                 sh 'sonar-scanner' 
             }
         }
-        stage('Deploy') {
+        stage('Security Scan') {
             steps {
-                echo "Deploying the application "
+              post {
+        success {
+            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
+                      to: 'your_email@example.com',
+                      attachLog: true
+        }
+        failure {
+            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
+                      to: 'your_email@example.com',
+                      attachLog: true  
             }
         }
-        stage('Approval') {
+        stage('Deploy to Staging') {
             steps {
-                echo "manual approval..."
-                
+                sh 'ansible-playbook deploy-staging.yml'
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                // Run integration tests on staging environment
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo "Deploying the application to the production environment: ${env.PRODUCTION_ENVIRONMENT}"
+                 sh 'ansible-playbook deploy-production.yml'
             }
-        }
-    }
-    
-    post {
-        success {
-            echo 'Pipeline successfully completed!'
-            
-        }
-        failure {
-            echo 'Pipeline failed!'
-            
-        }
+        } 
     }
 }
