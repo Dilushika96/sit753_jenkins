@@ -18,16 +18,15 @@ pipeline {
             }
            post {
         success {
-            emailext(
-                    to: "dilushikasavindi12@gmail.com",
+        
+                    mail to: "dilushikasavindi12@gmail.com",
                     subject: "Build status success",
-                    body: "Build was success")
+                    body: "Build was success"
         }
         failure {
-            emailext(
-                       to: "dilushikasavindi12@gmail.com",
-                        subject: "Build status success",
-                      body: "Build was failure")
+             mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Build status success",
+                    body: "Build was success"
         }
         }
         }
@@ -45,16 +44,14 @@ pipeline {
             }
             post {
         success {
-            emailext(
-                        to: "dilushikasavindi12@gmail.com",
-                        subject: "Build status success",
-                        body: "Build was success")
+             mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Build status success",
+                    body: "Build was success"
         }
         failure {
-            emailext(
-                        to: "dilushikasavindi12@gmail.com",
-                        subject: "Build status success",
-                        body: "Build was failure")
+             mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Build status success",
+                    body: "Build was success"
         }
         }
         }
