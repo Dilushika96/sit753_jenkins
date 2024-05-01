@@ -13,6 +13,20 @@ pipeline {
                 
                 echo "Unit and Integration Tests passed"
             }
+           post {
+        success {
+            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
+                      to: 'dilushikasavindi12@gmail.com',
+                      attachLog: true
+        }
+        failure {
+            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
+                      to: 'dilushikasavindi12@gmail.com',
+                      attachLog: true
+        }
+        }
         }
         stage('Code Analysis') {
             steps {
@@ -24,6 +38,20 @@ pipeline {
             steps {
                 echo "Security Scan completed"
             }
+            post {
+        success {
+            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
+                      to: 'dilushikasavindi12@gmail.com',
+                      attachLog: true
+        }
+        failure {
+            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
+                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
+                      to: 'dilushikasavindi12@gmail.com',
+                      attachLog: true
+        }
+        }
         }
         stage('Deploy to Staging') {
             steps {
@@ -40,20 +68,6 @@ pipeline {
                 echo "Deployed to Production"
             }
         }
-    }
-    
-    post {
-        success {
-            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true
-        }
-        failure {
-            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true
-        }
+ 
     }
 }
