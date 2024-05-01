@@ -55,7 +55,7 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                  sh 'ansible-playbook deploy-production.yml'
-            }
-        } 
-    }
+                  }
+             } 
+        }
 }
