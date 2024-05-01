@@ -21,12 +21,14 @@ pipeline {
         
                     mail to: "dilushikasavindi12@gmail.com",
                     subject: "Test status success",
-                    body: "Test was success"
+                    body: "Test was success",
+                    attachLog: true
         }
         failure {
              mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Build status success",
-                    body: "Test was failure"
+                    subject: "Test status success",
+                    body: "Test was failure",
+                    attachLog: true
         }
         }
         }
@@ -46,12 +48,14 @@ pipeline {
         success {
              mail to: "dilushikasavindi12@gmail.com",
                     subject: "Security scan status success",
-                    body: "security scan was success"
+                    body: "security scan was success",
+                    attachLog: true
         }
         failure {
              mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Build status success",
-                    body: "security scan was failure"
+                    subject: "Security scan status success",
+                    body: "security scan was failure",
+                    attachLog: true
         }
         }
         }
