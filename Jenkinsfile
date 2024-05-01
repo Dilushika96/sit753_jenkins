@@ -20,7 +20,7 @@ pipeline {
         success {
         
                     mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Build status success",
+                    subject: "Test status success",
                     body: "Test was success"
         }
         failure {
@@ -45,7 +45,7 @@ pipeline {
             post {
         success {
              mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Build status success",
+                    subject: "Security scan status success",
                     body: "security scan was success"
         }
         failure {
