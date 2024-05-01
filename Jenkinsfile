@@ -12,16 +12,15 @@ pipeline {
                 sh 'mvn test' 
               post {
         success {
-            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true
+            
+                    mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Build statu Email"
+                    build: "Build was success"
         }
         failure {
-            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
-                      to: 'dilushikasavindi12@gmail.com',
-                      attachLog: true 
+                    mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Build statu Email"
+                    build: "Build was failure"
             }
         }
         stage('Code Analysis') {
@@ -33,16 +32,14 @@ pipeline {
             steps {
               post {
         success {
-            emailext subject: "Pipeline Success: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has succeeded.",
-                      to: 'your_email@example.com',
-                      attachLog: true
+                    mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Build statu Email"
+                    build: "Build was success"
         }
         failure {
-            emailext subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
-                      body: "The pipeline ${currentBuild.fullDisplayName} has failed.",
-                      to: 'your_email@example.com',
-                      attachLog: true  
+                    mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Build statu Email"
+                    build: "Build was failure"
             }
         }
         stage('Deploy to Staging') {
