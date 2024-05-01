@@ -23,6 +23,7 @@ pipeline {
                     build: "Build was failure"
             }
         }
+            }
         stage('Code Analysis') {
             steps {
                  sh 'sonar-scanner' 
@@ -42,6 +43,8 @@ pipeline {
                     build: "Build was failure"
             }
         }
+            }
+        }
         stage('Deploy to Staging') {
             steps {
                 sh 'ansible-playbook deploy-staging.yml'
@@ -56,7 +59,7 @@ pipeline {
             steps {
                  sh 'ansible-playbook deploy-production.yml'
                   }
-             } 
-         }
+            } 
+        }
     }
 }
