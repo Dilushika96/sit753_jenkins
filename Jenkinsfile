@@ -22,25 +22,21 @@ pipeline {
         }
         stage('Security Scan') {
             steps {
-               
                 echo "Security Scan completed"
             }
         }
         stage('Deploy to Staging') {
             steps {
-                
                 echo "Deployed to Staging"
             }
         }
         stage('Integration Tests on Staging') {
-            steps {
-                
+            steps { 
                 echo "Integration Tests on Staging passed"
             }
         }
         stage('Deploy to Production') {
             steps {
-                '
                 echo "Deployed to Production"
             }
         }
