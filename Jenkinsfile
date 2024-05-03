@@ -19,16 +19,22 @@ pipeline {
            post {
         success {
         
-                    mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Test status success",
-                    body: "Test was success"
-                   
+                  emailext (
+                        attachLog: true, 
+                        to: 'dilushikasavindi12@gmail.com', 
+                        subject: "Unit and Integration Tests Status Email", 
+                        body: "Unit and Intergration Tests was  success",
+                        mimeType: 'text/html'
+                    )
         }
         failure {
-             mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Test status success",
-                    body: "Test was failure"
-                    
+             emailext (
+                        attachLog: true, 
+                        to: 'kaushi.rajapakshe1@gmail.com', 
+                        subject: "Unit and Integration Tests Status Email", 
+                        body: "Unit and Intergration Tests was  success",
+                        mimeType: 'text/html'
+                    )
         }
         }
         }
