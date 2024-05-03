@@ -19,22 +19,16 @@ pipeline {
            post {
         success {
         
-                  emailext (
-                        attachLog: true, 
-                        to: 'dilushikasavindi12@gmail.com', 
-                        subject: "Unit and Integration Tests Status Email", 
-                        body: "Unit and Intergration Tests was  success",
-                        mimeType: 'text/html'
-                    )
+                    mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Security scan status success",
+                    body: "security scan was success"
+
         }
         failure {
-             emailext (
-                        attachLog: true, 
-                        to: 'kaushi.rajapakshe1@gmail.com', 
-                        subject: "Unit and Integration Tests Status Email", 
-                        body: "Unit and Intergration Tests was  success",
-                        mimeType: 'text/html'
-                    )
+                    mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Security scan status success",
+                    body: "security scan was failure"
+
         }
         }
         }
