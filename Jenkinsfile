@@ -22,7 +22,7 @@ pipeline {
                     mail to: "dilushikasavindi12@gmail.com",
                     subject: "Test status success",
                     body: "Test was success"
-                    attachmentsPattern: 'build.log'
+                    attachmentsPattern: "build.log"
         }
         failure {
              mail to: "dilushikasavindi12@gmail.com",
