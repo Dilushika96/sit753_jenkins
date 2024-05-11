@@ -19,16 +19,21 @@ pipeline {
            post {
         success {
         
-                    mail to: "dilushikasavindi12@gmail.com",
+             emailtext(
+                     attachLog:true,
+                    to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
-                    body: "security scan was success"
+                    body: "security scan was success" 
+             )
 
         }
         failure {
-                    mail to: "dilushikasavindi12@gmail.com",
+             emailtext(
+                     attachLog:true,
+                    to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
-                    body: "security scan was failure"
-
+                    body: "security scan was success" 
+             )
         }
         }
         }
@@ -46,16 +51,21 @@ pipeline {
             }
             post {
         success {
-             mail to: "dilushikasavindi12@gmail.com",
+              emailtext(
+                     attachLog:true,
+                    to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
-                    body: "security scan was success"
+                    body: "security scan was success" 
+             )
                
         }
         failure {
-             mail to: "dilushikasavindi12@gmail.com",
+              emailtext(
+                     attachLog:true,
+                    to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
-                    body: "security scan was failure"
-                   
+                    body: "security scan was success" 
+             )
         }
         }
         }
