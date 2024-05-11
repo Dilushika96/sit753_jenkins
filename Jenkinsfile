@@ -19,7 +19,7 @@ pipeline {
            post {
         success {
         
-             emailtext(
+             emailext(
                      attachLog:true,
                     to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
@@ -28,7 +28,7 @@ pipeline {
 
         }
         failure {
-             emailtext(
+             emailext(
                      attachLog:true,
                     to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
@@ -51,7 +51,7 @@ pipeline {
             }
             post {
         success {
-              emailtext(
+              emailext(
                      attachLog:true,
                     to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
@@ -60,7 +60,7 @@ pipeline {
                
         }
         failure {
-              emailtext(
+              emailext(
                      attachLog:true,
                     to: 'dilushikasavindi12@gmail.com',
                     subject: "Security scan status success",
