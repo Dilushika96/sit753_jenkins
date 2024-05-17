@@ -28,7 +28,7 @@ pipeline {
                         attachLog: true,
                         to: 'dilushikasavindi12@gmail.com',
                         subject: "Unit and Integration Tests - Failure",
-                        body: "Unit and Integration Tests failed. Please check the log for details."
+                        body: "Unit and Integration Tests failed. Please check the log for details.",
                         mimeType:'text/html'
                         
                     )
@@ -52,7 +52,7 @@ pipeline {
                         attachLog: true,
                         to: 'dilushikasavindi12@gmail.com',
                         subject: "Security Scan - Success",
-                        body: "Security scan completed successfully."
+                        body: "Security scan completed successfully.",
                          mimeType:'text/html'
                     )
                 }
@@ -61,7 +61,7 @@ pipeline {
                         attachLog: true,
                         to: 'dilushikasavindi12@gmail.com',
                         subject: "Security Scan - Failure",
-                        body: "Security scan failed. Please check the log for details."
+                        body: "Security scan failed. Please check the log for details.",
                          mimeType:'text/html'
                     )
                 }
