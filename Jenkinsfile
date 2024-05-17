@@ -15,23 +15,18 @@ pipeline {
             }
             post {
                 success {
-                    emailext(
-                        attachLog: true,
-                        to: 'dilushikasavindi12@gmail.com',
-                        subject: "Unit and Integration Tests - Success",
-                        body: "Unit and Integration Tests completed successfully.",
-                        mimeType:'text/html'
-                    )
-                }
-                failure {
-                    emailext(
-                        attachLog: true,
-                        to: 'dilushikasavindi12@gmail.com',
-                        subject: "Unit and Integration Tests - Failure",
-                        body: "Unit and Integration Tests failed. Please check the log for details.",
-                        mimeType:'text/html'
-                        
-                    )
+                   success {
+        
+                    mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Test status success",
+                    body: "Test was success"
+        }
+        failure {
+             mail to: "dilushikasavindi12@gmail.com",
+                    subject: "Test status success",
+                    body: "Test was failure"
+                    
+        }
                 }
             }
         }
