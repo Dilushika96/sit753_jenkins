@@ -12,23 +12,20 @@ pipeline {
             steps {
                 echo "Unit and Integration Tests passed"
                 echo "JUnit Tool Used"
+            
             }
-            post {
-                success {
-               
-        
+            post{
+                success{
                     mail to: "dilushikasavindi12@gmail.com",
                     subject: "Test status success",
                     body: "Test was success"
-        }
-        failure {
-             mail to: "dilushikasavindi12@gmail.com",
+                }
+                failure {
+                    mail to: "dilushikasavindi12@gmail.com",
                     subject: "Test status success",
                     body: "Test was failure"
-                    
-        }
                 }
-            }
+            }   
         }
         stage('Code Analysis') {
             steps {
