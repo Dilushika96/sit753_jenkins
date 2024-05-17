@@ -15,7 +15,7 @@ pipeline {
             }
             post {
                 success {
-                   success {
+               
         
                     mail to: "dilushikasavindi12@gmail.com",
                     subject: "Test status success",
