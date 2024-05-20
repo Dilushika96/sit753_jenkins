@@ -1,78 +1,87 @@
 pipeline {
     agent any
-    
     stages {
         stage('Build') {
             steps {
-                echo "Build was successful"
-                echo "Maven Tool Used"
+                script {
+                    echo "Compile the code and generate any necessary artifacts using Maven"
+                }
             }
         }
+
         stage('Unit and Integration Tests') {
             steps {
-                echo "Unit and Integration Tests passed"
-                echo "JUnit Tool Used"
-            
-            }
-            post{
-                success{
-                    mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Test status success",
-                    body: "Test was success"
+                script {
+                    echo "Running unit tests and integration tests"
                 }
-                failure {
-                    mail to: "dilushikasavindi12@gmail.com",
-                    subject: "Test status success",
-                    body: "Test was failure"
-                }
-            }   
-        }
-        stage('Code Analysis') {
-            steps {
-                echo "Code Analysis completed"
-                echo "SonarQube Tool Used"
-            }
-        }
-        stage('Security Scan') {
-            steps {
-                echo "Security Scan completed"
-                echo "JMeter Tool Used"
             }
             post {
-                success {
-                    emailext(
-                        attachLog: true,
-                        to: 'dilushikasavindi12@gmail.com',
-                        subject: "Security Scan - Success",
-                        body: "Security scan completed successfully",
-                         mimeType:'text/html'
-                    )
-                }
-                failure {
-                    emailext(
-                        attachLog: true,
-                        to: 'dilushikasavindi12@gmail.com',
-                        subject: "Security Scan - Failure",
-                        body: "Security scan failed. Please check the log for details",
-                         mimeType:'text/html'
+                always {
+                    emailext (
+                        attachLog: true, 
+                        to: 'dilushikasavindi12@gmail.com', 
+                        subject: "Unit and Integration Tests Status Email - ${currentBuild.result}", 
+                        body: "Unit and Intergration Tests was ${currentBuild.result}!\n Build Number: ${currentBuild.number}\n\n",
+                        mimeType: 'text/html'
                     )
                 }
             }
         }
-        stage('Deploy to Staging') {
+
+        stage('Code Analysis') {
             steps {
-                echo "Deployed to Staging"
+                script {
+                    echo "Analyzing code using a code analysis tool using SonarQube"
+                }
             }
         }
+
+        stage('Security Scan') {
+            steps {
+                script {
+                    echo "Performing security scan using a security scanning tool using OWASP"
+                }
+            }
+            post {
+                always {
+                    emailext (
+                        attachLog: true, 
+                        to: 'dilushikasavindi12@gmail.com', 
+                        subject: "Security Scan Status Email - ${currentBuild.result}", 
+                        body: "Security Scan was ${currentBuild.result}!\n Build Number: ${currentBuild.number}\n\n"
+                    )
+                }
+            }
+        }
+        stage('Deploy Tests on Staging') {
+            steps {
+                script {
+                    echo "Deploying the application to a staging server using AWS EC2 instance"
+                }
+            }
+        }
+
         stage('Integration Tests on Staging') {
-            steps { 
-                echo "Integration Tests on Staging passed"
-                echo "JMeter Tool Used"
+            steps {
+                script {
+                    echo "Running integration tests on the staging environment"
+                }
+            }
+            post {
+                always {
+                    emailext (
+                        attachLog: true, 
+                        to: 'dilushikasavindi12@gmail.com', 
+                        subject: "Integration Tests Status Email on Staging - ${currentBuild.result}", 
+                        body: "Intergration Test on Staging was ${currentBuild.result}!\n Build Number: ${currentBuild.number}\n\n"
+                    )
+                }
             }
         }
+        
         stage('Deploy to Production') {
             steps {
-                echo "Deployed to Production"
+                echo "Deploying the application to a production server AWS EC2 instance"
             }
         }
     }
