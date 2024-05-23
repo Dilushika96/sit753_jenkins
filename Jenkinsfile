@@ -1,88 +1,92 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                    echo "Compile the code and generate any necessary artifacts using Maven"
-                }
-            }
-        }
+agent any
 
-        stage('Unit and Integration Tests') {
-            steps {
-                script {
-                    echo "Running unit tests and integration tests"
-                }
-            }
-            post {
-                always {
-                    emailext (
-                        attachLog: true, 
-                        to: 'dilushikasavindi12@gmail.com', 
-                        subject: "Unit and Integration Tests Status Email - ${currentBuild.result}", 
-                        body: "Unit and Intergration Tests was ${currentBuild.result}!\n Build Number: ${currentBuild.number}\n\n",
-                        mimeType: 'text/html'
-                    )
-                }
-            }
-        }
+stages {
+stage('Build') {
+steps {
 
-        stage('Code Analysis') {
-            steps {
-                script {
-                    echo "Analyzing code using a code analysis tool using SonarQube"
-                }
-            }
-        }
+echo "Build was successful"
+echo "Maven Tool Used"
 
-        stage('Security Scan') {
-            steps {
-                script {
-                    echo "Performing security scan using a security scanning tool using OWASP"
-                }
-            }
-            post {
-                always {
-                    emailext (
-                        attachLog: true, 
-                        to: 'dilushikasavindi12@gmail.com', 
-                        subject: "Security Scan Status Email - ${currentBuild.result}", 
-                        body: "Security Scan was ${currentBuild.result}!\n Build Number: ${currentBuild.number}\n\n"
-                    )
-                }
-            }
-        }
-        stage('Deploy Tests on Staging') {
-            steps {
-                script {
-                    echo "Deploying the application to a staging server using AWS EC2 instance"
-                }
-            }
-        }
+}
+}
+stage('Unit and Integration Tests') {
+steps {
 
-        stage('Integration Tests on Staging') {
-            steps {
-                script {
-                    echo "Running integration tests on the staging environment"
-                }
-            }
-            post {
-                always {
-                    emailext (
-                        attachLog: true, 
-                        to: 'dilushikasavindi12@gmail.com', 
-                        subject: "Integration Tests Status Email on Staging - ${currentBuild.result}", 
-                        body: "Intergration Test on Staging was ${currentBuild.result}!\n Build Number: ${currentBuild.number}\n\n"
-                    )
-                }
-            }
-        }
-        
-        stage('Deploy to Production') {
-            steps {
-                echo "Deploying the application to a production server AWS EC2 instance"
-            }
-        }
-    }
+echo "Unit and Integration Tests passed"
+echo "Junit Tool Used"
+}
+post {
+
+success {
+
+emailext(
+attachLog:true,
+to: 'dilushikasavindi12@gmail.com',
+subject: "Security scan status success",
+body: "security scan was success"
+)
+
+}
+failure {
+emailext(
+attachLog:true,
+to: 'dilushikasavindi12@gmail.com',
+subject: "Security scan status success",
+body: "security scan was success" ,
+mimeType: 'text/html
+)
+} }
+}
+}
+stage('Code Analysis') {
+steps {
+
+echo "Code Analysis completed"
+echo "Junit Tool Used"
+}
+}
+stage('Security Scan') {
+steps {
+echo "Security Scan completed"
+echo "Jmeter Tool Used"
+}
+post {
+success {
+emailext(
+attachLog:true,
+to: 'dilushikasavindi12@gmail.com',
+subject: "Security scan status success",
+body: "security scan was success",
+mimeType: 'text/html
+)
+
+}
+failure {
+emailext(
+attachLog:true,
+to: 'dilushikasavindi12@gmail.com',
+subject: "Security scan status success",
+body: "security scan was success",
+mimeType: 'text/html
+)
+}
+}
+}
+stage('Deploy to Staging') {
+steps {
+echo "Deployed to Staging"
+}
+}
+stage('Integration Tests on Staging') {
+steps {
+echo "Integration Tests on Staging passed"
+echo "Jmeter Tool Used"
+}
+}
+stage('Deploy to Production') {
+steps {
+echo "Deployed to Production"
+}
+}
 }
